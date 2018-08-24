@@ -54,6 +54,9 @@ type NodeInfo struct {
 	// as int64, to avoid conversions and accessing map.
 	allocatableResource *Resource
 
+	//real-time resource
+	realtimeResource  *Resource
+
 	// Cached taints of the node for faster lookup.
 	taints    []v1.Taint
 	taintsErr error
@@ -259,6 +262,7 @@ func NewNodeInfo(pods ...*v1.Pod) *NodeInfo {
 		requestedResource:   &Resource{},
 		nonzeroRequest:      &Resource{},
 		allocatableResource: &Resource{},
+		realtimeResource:    &Resource{},
 		TransientInfo:       newTransientSchedulerInfo(),
 		generation:          nextGeneration(),
 		usedPorts:           make(util.HostPortInfo),

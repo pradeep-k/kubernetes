@@ -38,7 +38,7 @@ import (
 	"k8s.io/kubernetes/pkg/scheduler/metrics"
 	"k8s.io/kubernetes/pkg/scheduler/util"
 	"k8s.io/kubernetes/pkg/scheduler/volumebinder"
-
+	metricsclient "k8s.io/kubernetes/pkg/controller/podautoscaler/metrics"
 	"github.com/golang/glog"
 )
 
@@ -109,6 +109,7 @@ type Config struct {
 	NodeLister algorithm.NodeLister
 	Algorithm  algorithm.ScheduleAlgorithm
 	GetBinder  func(pod *v1.Pod) Binder
+	MetricsClient metricsclient.MetricsClient
 	// PodConditionUpdater is used only in case of scheduling errors. If we succeed
 	// with scheduling, PodScheduled condition will be updated in apiserver in /bind
 	// handler so that binding and setting PodCondition it is atomic.

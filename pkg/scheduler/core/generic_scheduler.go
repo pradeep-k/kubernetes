@@ -43,6 +43,7 @@ import (
 	"k8s.io/kubernetes/pkg/scheduler/metrics"
 	"k8s.io/kubernetes/pkg/scheduler/util"
 	"k8s.io/kubernetes/pkg/scheduler/volumebinder"
+	metricsclient "k8s.io/kubernetes/pkg/controller/podautoscaler/metrics"
 )
 
 // FailedPredicateMap declares a map[string][]algorithm.PredicateFailureReason type.
@@ -99,6 +100,8 @@ type genericScheduler struct {
 	volumeBinder             *volumebinder.VolumeBinder
 	pvcLister                corelisters.PersistentVolumeClaimLister
 	disablePreemption        bool
+	metricsClient            metricsclient.MetricsClient
+metric
 }
 
 // Schedule tries to schedule the given pod to one of the nodes in the node list.
